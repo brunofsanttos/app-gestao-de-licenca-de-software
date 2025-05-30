@@ -1,12 +1,9 @@
 ### Maven ###
-
 .gitattributes
 mvnw.cmd
 mvnw
 .mvn
-
-
-
+.env
 
 HELP.md
 target/
