@@ -1,0 +1,26 @@
+package com.br.gestaodelicencadesoftware.entities;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity(name = "users")
+@Data
+public class UserEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long userId;
+
+    private String name;
+
+    private String email;
+
+    private String hashPassword;
+
+    private String role;
+
+    @OneToMany(mappedBy = "responseId", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<LicenseEntity> licenses = new ArrayList<>();
+}
