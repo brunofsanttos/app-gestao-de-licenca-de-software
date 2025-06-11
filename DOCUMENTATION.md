@@ -32,7 +32,7 @@ Um sistema onde pequenas empresas podem registrar os softwares que usam, com:
 | Documentação | OpenAPI |
 | DevOps | Docker, Docker Compose com Postgres, GitHub Actions |
 
-## 🎲 Modelo de dados
+## 🎲 Modelo de entidade e relacionamento
 
 ### Software
 | Campo | Tipo |
@@ -103,3 +103,10 @@ Um sistema onde pequenas empresas podem registrar os softwares que usam, com:
 | tipoMidia | String |
 | caminhoArquivo | String |
 | dataUpload | LocalDateTime |
+
+### Fornecedor
+| Campo          | Tipo          |
+|----------------|---------------|
+| idFornecedor   | Long          |
+| razaoSocial    | String        |
+| cnpj           | string        |
