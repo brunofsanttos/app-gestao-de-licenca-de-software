@@ -22,4 +22,6 @@ public class ProofEntity {
     private String fileContentType;
 
     private String fileUrl;
+
+    private Boolean isDeleted;
 }

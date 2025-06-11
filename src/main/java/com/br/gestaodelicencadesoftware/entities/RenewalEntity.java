@@ -21,4 +21,6 @@ public class RenewalEntity {
 
     private Boolean isRenovateAutomatically;
 
+    private Boolean isDeleted;
+
 }

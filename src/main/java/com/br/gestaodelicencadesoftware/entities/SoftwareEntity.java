@@ -23,4 +23,6 @@ public class SoftwareEntity {
     private LicenseEntity licenseId;
 
     private String urlSite;
+
+    private Boolean isDeleted;
 }

@@ -16,4 +16,6 @@ public class SupplierEntity {
     private String companyName;
 
     private String cnpj;
+
+    private Boolean isDeleted;
 }

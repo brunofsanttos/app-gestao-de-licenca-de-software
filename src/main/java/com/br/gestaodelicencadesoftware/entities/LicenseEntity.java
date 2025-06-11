@@ -29,5 +29,7 @@ public class LicenseEntity {
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.LAZY)
     private UserEntity responseId;
+
+    private Boolean isDeleted;
 }
 

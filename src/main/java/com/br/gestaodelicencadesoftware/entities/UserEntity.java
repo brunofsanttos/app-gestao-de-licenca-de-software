@@ -23,4 +23,6 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "responseId", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<LicenseEntity> licenses = new ArrayList<>();
+
+    private Boolean isDeleted;
 }
