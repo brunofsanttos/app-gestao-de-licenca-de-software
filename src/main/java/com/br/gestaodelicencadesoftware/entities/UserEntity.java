@@ -1,5 +1,6 @@
 package com.br.gestaodelicencadesoftware.entities;
 
+import com.br.gestaodelicencadesoftware.enumeratedTypes.UsersRoles;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,7 +20,7 @@ public class UserEntity {
 
     private String hashPassword;
 
-    private String role;
+    private UsersRoles role;
 
     @OneToMany(mappedBy = "responseId", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<LicenseEntity> licenses = new ArrayList<>();
