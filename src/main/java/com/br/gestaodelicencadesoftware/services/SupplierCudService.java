@@ -4,7 +4,6 @@ import com.br.gestaodelicencadesoftware.dtos.ObjectReturnDefault;
 import com.br.gestaodelicencadesoftware.dtos.SupplierDTO;
 import com.br.gestaodelicencadesoftware.entities.SupplierEntity;
 import com.br.gestaodelicencadesoftware.repositories.SupplierRepository;
-import com.br.gestaodelicencadesoftware.utils.TextFormatterUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +27,6 @@ public class SupplierCudService {
         this.validade(supplierDTO);
 
         SupplierEntity supplierEntity = modelMaper.map(supplierDTO, SupplierEntity.class);
-        supplierEntity.setCompanyName(TextFormatterUtil.removeSpecialCharactersAndSpacesFromTexts(supplierEntity.getCompanyName()));
 
         supplierEntity = supplierRepository.save(supplierEntity);
 
@@ -38,9 +36,9 @@ public class SupplierCudService {
     public ObjectReturnDefault read(SupplierDTO supplierDTO) throws Exception {
         this.validadeParamsSearch(supplierDTO);
 
-        SupplierEntity supplier = !supplierDTO.cnpj().isEmpty()
-                ? supplierRepository.findByCnpj(supplierDTO.cnpj())
-                : supplierRepository.findByCompanyName(supplierDTO.companyName());
+        SupplierEntity supplier = !supplierDTO.getCnpj().isEmpty()
+                ? supplierRepository.findByCnpj(supplierDTO.getCnpj())
+                : supplierRepository.findByCompanyName(supplierDTO.getCompanyName());
 
         if (supplier == null) {
             return new ObjectReturnDefault("Nenhum fornecedor encontrado com os parâmetros fornecidos.");
@@ -64,18 +62,18 @@ public class SupplierCudService {
     }
 
     private void validade(SupplierDTO supplierDTO) throws Exception {
-        if (supplierRepository.existsByCnpj(supplierDTO.cnpj())) {
+        if (supplierRepository.existsByCnpj(supplierDTO.getCnpj())) {
             throw new Exception("CNPJ já cadastrado");
         }
 
-        if (supplierDTO.companyName().isEmpty() || supplierDTO.companyName().isBlank()) {
+        if (supplierDTO.getCompanyName().isEmpty() || supplierDTO.getCompanyName().isBlank()) {
             throw new Exception("É obrigatório informar o nome da empresa");
         }
     }
 
     private void validadeParamsSearch(SupplierDTO supplierDTO) throws Exception {
-        if (supplierDTO.cnpj().isEmpty() || supplierDTO.cnpj().isBlank() &&
-                supplierDTO.companyName().isEmpty() || supplierDTO.companyName().isBlank()) {
+        if (supplierDTO.getCnpj().isEmpty() || supplierDTO.getCnpj().isBlank() &&
+                supplierDTO.getCompanyName().isEmpty() || supplierDTO.getCompanyName().isBlank()) {
             throw new Exception("Nenhum parâmetro informado para consulta");
 
         }
